@@ -24,7 +24,7 @@ function InputArea(props) {
 
     return <div>
         <h1>Input: {inputText}</h1>
-        <input type="text" onChange={updateText} value={inputText}></input>
+        <input type="text" onChange={updateText} value={inputText} placeholder="try ditto :)"></input>
         <p>
             <Button onClick={handleClick} style={buttonStyle} variant="contained" color="primary">Catch 'em'</Button>
         </p>
