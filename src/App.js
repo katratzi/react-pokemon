@@ -8,6 +8,8 @@ function App() {
 
   // try and catch one with this hook!
   const [caughtPokemon, setCaughtPokemon] = useState(false);
+  const [pokemonName, setPokemonName] = useState('');
+  const [pokemonSpriteURL, setPokemonURL] = useState('');
 
   // callback from input
   async function catchPokemon(name) {
@@ -18,8 +20,9 @@ function App() {
     // did we get a good response if HTTP-status is 200-299
     if (response.ok) {
       const myJson = await response.json(); //extract JSON from the http response
-      console.log(myJson.name + ' ' + myJson.order);
-      // caughtPokemon = true;
+      console.log(myJson.name + ' ' + myJson.sprites.front_default);
+      setPokemonName(myJson.name);
+      setPokemonURL(myJson.sprites.front_default);
       setCaughtPokemon(true);
     } else {
       // bad response
@@ -32,7 +35,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         < InputArea onClicked={catchPokemon} />
-        {caughtPokemon && <Pokemon />}
+        {caughtPokemon && <Pokemon name={pokemonName} imgUrl={pokemonSpriteURL} />}
       </header>
     </div>
   );
