@@ -4,11 +4,15 @@ import InputArea from './components/InputArea';
 function App() {
 
   async function catchPokemon(name) {
-    console.log(name);
+    console.log(`trying to catch ${name}`);
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-    const myJson = await response.json(); //extract JSON from the http response
-    // do something with myJson
-    console.log(myJson);
+    // did we get a good response if HTTP-status is 200-299
+    if (response.ok) {
+      const myJson = await response.json(); //extract JSON from the http response
+      console.log(myJson);
+    } else {
+      console.log("could not catch");
+    }
   }
 
   return (
