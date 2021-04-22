@@ -13,7 +13,8 @@ function InputArea(props) {
     }
 
     function handleClick(event) {
-        console.log(event);
+        const pokemonName = inputText;
+        props.onClicked(pokemonName);
     }
 
     // I don't want capitalize on the button
